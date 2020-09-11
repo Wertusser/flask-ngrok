@@ -32,7 +32,7 @@ def _run_ngrok(port, authToken):
     _download_ngrok(ngrok_path)
     executable = str(Path(ngrok_path, command))
     os.chmod(executable, 0o777)
-    auth = subprocess.Popen([executable, "auth", authToken], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    auth = subprocess.Popen([executable, "authtoken", authToken], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     print(auth.communicate())
     ngrok = subprocess.Popen([executable, 'http', str(port)])
     atexit.register(ngrok.terminate)
